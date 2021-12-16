@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    {% for wel in wels.items %}
+
+        {{ wel.title }}
+
+
+
+        {% for page_num in wels.iter_pages(left_edge=1, right_edge=2, left_current=2, right_current=2) %}
+              {% if page_num %}
+                  {% if page_num == wels.page %}
+            <ul class="pagination">
+              <li><a href="{{url_for('index', page=page_num)}}"> {{ page_num }} </a></li>
+         </ul>
+            {% else %} 
+            <ul class="pagination">
+              <li><a href="{{url_for('index', page=page_num)}}"> {{ page_num }} </a></li>
+              {% endif %}    
+              {% else %}
+              ...
+              {% endif %}
+          {% endfor %}
+
+    {% endfor %}
+
+{% endblock %}
