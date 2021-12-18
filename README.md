@@ -62,3 +62,6 @@
 Для запуска программы используйте команду docker compose up --build
 
 Сервис доступен по адресу 127.0.0.1:8000
+
+## Демка
+https://xamerzaevtz.herokuapp.com/
