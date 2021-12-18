@@ -1,41 +1,35 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
 <div class="container">
     <h2>Автобусы</h2>
-    <input class="form-control" id="myInput" type="text" placeholder="Найти..">
+    <input id="myInput" type="text" placeholder="Найти..">
     <br>         
-    <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> 
-            Фильтрация
-        </button>
-        <ul class="dropdown-menu">
-            <li class="sort" data-sort="id"><a class="dropdown-item" href="#">Фильтровать по ID </a></li>
-            <li class="sort" data-sort="title"><a class="dropdown-item" href="#">Фильтровать по номеру автобуса </a></li>
-            <li class="sort" data-sort="quantity"><a class="dropdown-item" href="#">Фильтровать по количеству пассажиров </a></li>
-            <li class="sort" data-sort="distance"><a class="dropdown-item" href="#">Фильтровать по пройденному расcтоянию </a></li>
-        </ul>
-    </div>
-{% for wel in wels.items %}
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-            
-              <th>{{wel.id}}</th>
-              <th>Номер автобуса: {{wel.title}}</th>
-              <td>Дата маршрута: {{wel.date}}</td>
-              <td>Число пассажиров: {{wel.quantity}}</td>
-              <td>Пройденное расстояние: {{wel.distance}}</td>
-             {% endfor %}
-            </tr>
-          </thead>
+    <table class="table table-bordered table-striped table_sort">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Номер автобуса</th>
+                        <th>Дата маршрута</th>
+                        <th>Число пассажиров</th>
+                        <th>Пройденное расстояние</th>
+                    </tr>
+                </thead>
+                <tbody id="myTable">
+                {% for wel in wels.items %}
+                <tr>
+                    <th>{{wel.id}}</th>
+                    <th>{{wel.title}}</th>
+                    <td>{{wel.date}}</td>
+                    <td>{{wel.quantity}}</td>
+                    <td>{{wel.distance}}</td>
+                {% endfor %}
+                </tr>
+            </tbody>
     </table>
-    
-    <p>Note that we start the search in tbody, to prevent filtering the table headers.</p>
   </div>
   
-  <div class="container">
+<div class="container">
         {% for page_num in wels.iter_pages(left_edge=1, right_edge=2, left_current=2, right_current=2) %}
               {% if page_num %}
                   {% if page_num == wels.page %}
@@ -50,18 +44,8 @@
               ...
               {% endif %}
           {% endfor %} 
-  </div>
-     
+</div>
 
 
-          <script>
-            $(document).ready(function(){
-              $("#myInput").on("keyup", function() {
-                var value = $(this).val().toLowerCase();
-                $("#myTable tr").filter(function() {
-                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
-              });
-            });
-            </script>
+
 {% endblock %}
