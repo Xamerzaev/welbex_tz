@@ -17,7 +17,6 @@ class MyTest(TestCase):
         date = datetime.datetime.now()
         wel = Wel(date=date, title='bus №55', quantity=5, distance=54)
         db.session.add(wel)
-        db.session.commit()
 
         assert wel in db.session
 

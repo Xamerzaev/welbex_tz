@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         for(const cell of target.parentNode.cells)
             cell.classList.toggle('sorted', cell === target);
     };
-    
-    document.querySelectorAll('.table_sort thead').forEach(tableTH => tableTH.addEventListener('click', () => getSort(event)));
+  
+    document.querySelectorAll('.table_sort thead tr th').forEach(tableTH => tableTH.addEventListener('click', () => getSort(event)));
     
 });
